@@ -22,7 +22,7 @@ function App() {
               <Route element={<Top/>} path="/top"/>
               <Route element={<SearchPage/>} path="/search"/>
               <Route element={<Filter/>} path="/filter"/>
-              <Route element={<RestInfo/>} path="info"/>
+              <Route element={<RestInfo/>} path="info/:ID"/>
               <Route element={<Comment/>} path="/comment"/>
           </Route>
         </Route>

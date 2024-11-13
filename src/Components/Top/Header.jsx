@@ -1,14 +1,14 @@
-import { useState } from "react"
+// import { useState } from "react"
 
 export default function Header() {
-    const [active, setActive] = useState(1)
+    // const [active, setActive] = useState(1)
     return (
         <div className="Header bg-[#F1EEF1] py-[20px] w-full">
             <div className="Container">
                 <h2 className="font-bold text-[20px]">
                     Tops
                 </h2>
-                <div className="flex items-center justify-start gap-[10px] mt-[10px]">
+                {/* <div className="flex items-center justify-start gap-[10px] mt-[10px]">
                     <button onClick={() => setActive(1)} className={`py-[5px] px-[10px] rounded-[10px] bg-[white] ${active === 1 ? 'activeBar' : ''}`}>
                         Kafelar
                     </button>
@@ -21,7 +21,7 @@ export default function Header() {
                     <button onClick={() => setActive(4)} className={`py-[5px] px-[10px] rounded-[10px] bg-[white] ${active === 4 ? 'activeBar' : ''}`}>
                         Milliy
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

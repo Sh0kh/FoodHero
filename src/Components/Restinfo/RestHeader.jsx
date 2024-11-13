@@ -1,8 +1,13 @@
 import { NavLink } from "react-router-dom";
+import CONFIG from "../../Utils/Config";
 
-export default function RestHeader() {
+export default function RestHeader({data}) {
+
+    
+
     return (
-        <div className="RestHeader h-[200px] w-full relative">
+        <div className="bg-center bg-no-repeat bg-cover h-[200px] w-full relative"
+        style={{ backgroundImage: `url(${CONFIG.API_URL + data?.banner})` }}>
             <div className="Container h-full w-full relative">
                 <div className="absolute bottom-0 left-0 w-full h-[100px] backdrop-blur-md p-[20px]">
                    <NavLink to={'/'}>
@@ -36,10 +41,7 @@ export default function RestHeader() {
                         </div>
                         <div className="px-[15px] py-[5px] bg-[#00E500B2] cursor-pointer rounded-[15px] flex items-center gap-[5px]">
                                 <h2 className="text-[12px]   text-[white]">
-                                    09:00
-                                </h2>
-                                <h2 className="text-[12px]  text-[white]">
-                                    23:00
+                                    {data?.workingTime}
                                 </h2>
                             </div>
                     </div>
