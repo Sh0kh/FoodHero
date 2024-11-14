@@ -9,6 +9,9 @@ import SearchPage from "./Pages/SearchPage"
 import Filter from "./Pages/Filter"
 import RestInfo from "./Pages/RestInfo"
 import Comment from "./Pages/Comment"
+import Register from "./Pages/Register"
+import Login from "./Pages/Login"
+
 
 function App() {
 
@@ -23,7 +26,9 @@ function App() {
               <Route element={<SearchPage/>} path="/search"/>
               <Route element={<Filter/>} path="/filter"/>
               <Route element={<RestInfo/>} path="info/:ID"/>
-              <Route element={<Comment/>} path="/comment"/>
+              <Route element={<Comment/>} path="/comment/:ID"/>
+              <Route element={<Register/>} path="/register"/>
+              <Route element={<Login/>} path="/login"/>
           </Route>
         </Route>
       </Routes>

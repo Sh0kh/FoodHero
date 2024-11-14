@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import CONFIG from "../../Utils/Config";
 
 export default function RestHeader({data}) {
 
-    
+    const { ID } = useParams()
 
     return (
         <div className="bg-center bg-no-repeat bg-cover h-[200px] w-full relative"
@@ -31,7 +31,7 @@ export default function RestHeader({data}) {
                                     <path d="M6 0L7.34708 4.1459H11.7063L8.17963 6.7082L9.52671 10.8541L6 8.2918L2.47329 10.8541L3.82037 6.7082L0.293661 4.1459H4.65292L6 0Z" fill="#FFA500" />
                                 </svg>
                             </div>
-                           <NavLink to='/comment'>
+                           <NavLink to={`/comment/${ID}`}>
                            <div className="px-[15px] py-[5px] bg-[white] cursor-pointer rounded-[15px] flex items-center gap-[5px]">
                                 <h2 className="text-[12px]  font-bold">
                                     Fikr | 58

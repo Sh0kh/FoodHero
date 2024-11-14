@@ -89,6 +89,24 @@ body{
   animation: slideUp 0.3s ease forwards;
 }
 
+
+.Top__Card.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.card {
+  height: 200px; /* Фиксированная высота */
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%; /* Полная ширина родительского элемента */
+  height: 100%;
+  object-fit: cover; /* Сохраняет пропорции и обрезает изображение */
+}
+
 @keyframes slideUp {
   from {
       transform: translateY(100%);

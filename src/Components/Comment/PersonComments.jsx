@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Modal from './Modal';
+import axios from 'axios';
 
 export default function PersonComments() {
     const [isModalVisible, setIsModalVisible] = useState(false);
-
+    const [data, setData] = useState('')
     const openModal = () => {
         setIsModalVisible(true);
     };
@@ -11,11 +13,22 @@ export default function PersonComments() {
         setIsModalVisible(false);
     };
 
+    const getComment = async () =>{
+        try{
+            const response = await axios.get('')
+            setData(response?.data)
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+
     return (
         <div>
             <div className="Container">
                 <div className="flex justify-between flex-col">
                     <div className="flex flex-col gap-[10px] mt-[30px]">
+
                         <div className="flex items-start justify-between border-b-[2px] pb-[10px]">
                             <div className="">
                                 <h2 className="font-bold text-[20px]">
@@ -39,25 +52,7 @@ export default function PersonComments() {
                     </div>
                 </div>
             </div>
-
-            {/* Modal */}
-            {isModalVisible && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <label htmlFor=""  className='block mb-[20px]'>
-                            <h3 className="font-bold text-[18px] mb-[10px]">Ismingiz</h3>
-                            <input type="text" className='w-full px-[10px ] py-[8px] rounded-[15px]' />
-                        </label>
-                        <label htmlFor="">
-                        <h3 className="font-bold text-[18px] mb-[10px]">Fikringiz</h3>
-                        <textarea placeholder="" className="w-full h-[100px] p-[10px] border rounded"></textarea>
-                        </label>
-                        <button onClick={closeModal} className="mt-[10px] w-full py-[10px] bg-[#C0C] rounded-[10px] text-white">
-                            Yuborish
-                        </button>
-                    </div>
-                </div>
-            )}
+            <Modal isOpen={isModalVisible} onClose={closeModal}/>
         </div>
     );
 }
