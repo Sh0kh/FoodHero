@@ -1,36 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import ReactLoading from 'react-loading';
 import CONFIG from '../../Utils/Config';
 
-export default function Category({ id }) {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    
-    useEffect(() => {
-        const getRestaurants = async () => {
-            try {
-                const response = await axios.get(`/food-establishments/all?cityId=${id}`);
-                setData(response.data); // Update state with fetched data
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getRestaurants(); // Fetch data when `id` changes
-    }, [id]);
-
-    // Show loading spinner while data is being fetched
-    if (loading) {
-        return (
-            <div className='flex items-center justify-center my-[30px] w-full'>
-                <ReactLoading type="spinningBubbles" color="#000" height={100} width={100} />
-            </div>
-        );
-    }
+export default function Category({ data }) {
 
     return (
         <div className="mt-[15px] pb-[100px]">
@@ -39,7 +10,7 @@ export default function Category({ id }) {
                     Ovqatlanish maskanlari
                 </h2>
                 {data && data.length > 0 ? (
-                    data.map((i, index) => (
+                    data?.map((i, index) => (
                         <NavLink key={index} to={`/info/${i?.id}`}>
                             <div className="flex items-center justify-center flex-col gap-[10px] mt-[20px]">
                                 <img className='w-full rounded-[10px]' src={CONFIG.API_URL + i?.banner} alt="foto" />

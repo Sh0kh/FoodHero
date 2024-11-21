@@ -31,6 +31,16 @@ export default function TopsCard() {
         );
     }
 
+    if(data?.length === 0){
+        return(
+            <div className="h-screen flex items-center justify-center">
+                <h1>
+                    Bo`sh
+                </h1>
+            </div>
+        )
+    }
+
     return (
         <div className="TopCard mt-[30px] pb-[100px]">
             <div className="Container">

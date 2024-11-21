@@ -14,9 +14,9 @@ export default function SearchCard({ data }) {
                                         <h2 className='font-bold text-[20px]'>
                                             {i?.name}
                                         </h2>
-                                        <span className='text-[#6A616B]'>
+                                        {/* <span className='text-[#6A616B]'>
                                             Cofe • Bake • Chocolate
-                                        </span>
+                                        </span> */}
                                     </div>
                                     {/* <button className='flex items-center gap-[5px] text-[#00F] text-[20px]'>
                                         More

@@ -1,5 +1,5 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://185.219.81.112:8181/api'
+axios.defaults.baseURL = 'http://109.107.157.246/api'
 
 export default axios

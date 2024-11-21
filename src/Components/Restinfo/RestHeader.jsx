@@ -34,7 +34,7 @@ export default function RestHeader({data}) {
                            <NavLink to={`/comment/${ID}`}>
                            <div className="px-[15px] py-[5px] bg-[white] cursor-pointer rounded-[15px] flex items-center gap-[5px]">
                                 <h2 className="text-[12px]  font-bold">
-                                    Fikr | 58
+                                    Fikr
                                 </h2>
                             </div>
                            </NavLink>

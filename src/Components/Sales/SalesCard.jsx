@@ -2,6 +2,17 @@
 import CONFIG from '../../Utils/Config'
 
 export default function SalesCard({ data }) {
+
+    if(data?.length === 0){
+        return(
+            <div className='flex items-center justify-center h-screen'>
+                <h1>
+                    Bo`sh
+                </h1>
+            </div>
+        )
+    }
+
     return (
         <div className="SalesCard pb-[100px]">
             <div className="Container">
