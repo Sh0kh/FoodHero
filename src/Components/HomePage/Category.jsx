@@ -3,6 +3,7 @@ import CONFIG from '../../Utils/Config';
 
 export default function Category({ data }) {
 
+
     return (
         <div className="mt-[15px] pb-[100px]">
             <div className="Container">
@@ -20,7 +21,7 @@ export default function Category({ data }) {
                                             {i?.title}
                                         </h2>
                                         <span className='text-[#6A616B]'>
-                                            Cofe • Bake • Chocolate
+                                            {i?.address}
                                         </span>
                                     </div>
                                     <button className='flex items-center gap-[5px] text-[#00F] text-[20px]'>

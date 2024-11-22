@@ -18,8 +18,6 @@ export default function Sales(){
         }
     }
 
-    console.log(data)
-
     useEffect(()=>{
         GetSales()
     },[])

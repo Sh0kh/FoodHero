@@ -1,44 +1,23 @@
-import axios from "axios";
+import { useState } from "react";
 import Header from "../Components/SearchPage/Header";
 import SearchCard from "../Components/SearchPage/SearchCard";
-// import SearchCategory from "../Components/SearchPage/SearchCategory";
-import { useEffect, useState } from "react";
-
-import ReactLoading from 'react-loading';
 
 export default function SearchPage(){
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
-    const getSearchData = async()=>{
-        try{
-            const response = await axios.get(`/categories/all`)
-            setData(response?.data)
-        }catch(error){
-            console.log(error)
-        }finally{
-            setLoading(false)
-        }
-    }
+    
+    const [filteredData, setFilteredData] = useState([]);
 
-    useEffect(()=>{
-        getSearchData()
-    },[])
-
-    if (loading) {
-        return (
-            <div className='flex items-center justify-center h-screen my-[30px] w-full'>
-                <ReactLoading type="spinningBubbles" color="#000" height={100} width={100} />
-            </div>
-        );
-    }
+    // Функция для получения отфильтрованных данных
+    const handleFilteredData = (data) => {
+      setFilteredData(data);
+    };
 
 
 
     return(
         <div className="SearchPage">
-            <Header/>
+            <Header onFilter={handleFilteredData}/>
             {/* <SearchCategory/> */}
-            <SearchCard data={data}/>
+            <SearchCard data={filteredData}/>
         </div>
     )
 }

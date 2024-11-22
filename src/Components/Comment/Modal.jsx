@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 import ReactStars from 'react-stars'; // Импортируем компонент ReactStars
 
-export default function Modal({ isOpen, onClose }) {
+export default function Modal({ isOpen, onClose, refresh }) {
     const [info, setInfo] = useState('');
     const [rating, setRating] = useState(0); // Состояние для хранения рейтинга
     const { ID } = useParams();
@@ -38,7 +38,7 @@ export default function Modal({ isOpen, onClose }) {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-
+            refresh()
             Swal.fire({
                 title: 'Muvaffaqiyatli!',
                 icon: 'success',

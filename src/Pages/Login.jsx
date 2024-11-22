@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -87,6 +87,9 @@ const Login = () => {
                     >
                         Login
                     </button>
+                    <NavLink className={`text-end block text-[blue] `} to={'/register'}>
+                        Register
+                    </NavLink>
                 </form>
             </div>
         </div>

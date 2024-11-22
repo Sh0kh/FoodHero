@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import ReactLoading from 'react-loading';
 import CONFIG from "../../Utils/Config";
+import { NavLink } from "react-router-dom";
 export default function TopsCard() {
 
     const [data, setData] = useState([])
@@ -31,8 +32,8 @@ export default function TopsCard() {
         );
     }
 
-    if(data?.length === 0){
-        return(
+    if (data?.length === 0) {
+        return (
             <div className="h-screen flex items-center justify-center">
                 <h1>
                     Bo`sh
@@ -47,7 +48,9 @@ export default function TopsCard() {
                 <div className="Top__Card wrapper">
                     {data?.map((i, index) => (
                         <div key={index} className="card card-1">
-                            <img src={CONFIG.API_URL + i?.banner} alt="foto" />
+                            <NavLink to={`/info/${i?.id}`}>
+                                <img src={CONFIG.API_URL + i?.banner} alt="foto" />
+                            </NavLink>
                         </div>
                     ))}
                 </div>

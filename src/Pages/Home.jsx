@@ -41,13 +41,12 @@ export default function Home() {
             </div>
         );
     }
-
     return (
         <div className="">
             <Header onCityChange={handleCityChange} />
             <ReklamaSwiper />
             <TopSales />
-            <Category dat={data} />
+            <Category data={data} />
         </div>
     )
 }

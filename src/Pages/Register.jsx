@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -32,7 +32,7 @@ const Register = () => {
       });
       console.log(response)
       setTimeout(() => {
-        navigate('/')
+        navigate('/login')
       }, 1000)
     } catch (error) {
       Swal.fire({
@@ -105,6 +105,9 @@ const Register = () => {
           >
             Register
           </button>
+          <NavLink className={`block text-end text-[blue]`} to={'/login'}>
+              Login
+          </NavLink>
         </form>
       </div>
     </div>

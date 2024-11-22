@@ -58,7 +58,7 @@ export default function PersonComments() {
                     </div>
                 </div>
             </div>
-            <Modal isOpen={isModalVisible} onClose={closeModal} />
+            <Modal refresh={getComment} isOpen={isModalVisible} onClose={closeModal} />
         </div>
     );
 }

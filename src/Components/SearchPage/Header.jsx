@@ -1,25 +1,78 @@
-// import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ReactLoading from "react-loading";
 
-export default function Header() {
+export default function Header({ onFilter }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState("");
+
+  const getSearchData = async () => {
+    try {
+      const response = await axios.get(`/categories/all`);
+      setData(response?.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getSearchData();
+  }, []);
+
+  // Фильтруем данные
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  // Передаем отфильтрованные данные родительскому компоненту
+  useEffect(() => {
+    onFilter(filteredData);
+  }, [filteredData, onFilter]);
+
+  if (loading) {
     return (
-        <div className="Header bg-[#F1EEF1] py-[20px] w-full">
-            <div className="Container ">
-                <label htmlFor="search" className="flex items-center justify-between bg-[white] px-[16px] py-[10px] mx-[15px] rounded-[24px]">
-                    <div className="flex items-center gap-[10px]">
-                        <svg className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                            <path d="M10.567 20.1339C12.6896 20.1335 14.7511 19.4229 16.4231 18.1153L18.6007 20.2929C18.9913 20.6834 19.6244 20.6834 20.0149 20.2929L20.2917 20.0161C20.6822 19.6256 20.6822 18.9925 20.2917 18.6019L18.1141 16.4243C19.4224 14.7521 20.1334 12.6902 20.1339 10.567C20.1339 5.29198 15.8419 1 10.567 1C5.29198 1 1 5.29198 1 10.567C1 15.8419 5.29198 20.1339 10.567 20.1339ZM10.567 3.39174C14.5241 3.39174 17.7422 6.60983 17.7422 10.567C17.7422 14.5241 14.5241 17.7422 10.567 17.7422C6.60983 17.7422 3.39174 14.5241 3.39174 10.567C3.39174 6.60983 6.60983 3.39174 10.567 3.39174Z" fill="#372E38" stroke="white" stroke-width="0.6" />
-                        </svg>
-                        <input className="outline-none" type="text" placeholder="Qidiruv" />
-                    </div>
-                    {/* <NavLink to={'/filter'}> */}
-                        <button className="cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" fill="none">
-                                <path d="M21.447 10.105L15.447 7.10498C15.3081 7.03546 15.1549 6.99927 14.9995 6.99927C14.8441 6.99927 14.6909 7.03546 14.552 7.10498L9 9.88198L3.447 7.10498C3.2945 7.02878 3.12506 6.99283 2.95476 7.00054C2.78446 7.00825 2.61895 7.05938 2.47397 7.14905C2.32899 7.23873 2.20933 7.36398 2.12638 7.51291C2.04342 7.66184 1.99992 7.82951 2 7.99998V21C2 21.379 2.214 21.725 2.553 21.895L8.553 24.895C8.69193 24.9645 8.84515 25.0007 9.0005 25.0007C9.15585 25.0007 9.30907 24.9645 9.448 24.895L15 22.118L20.553 24.894C20.7051 24.9709 20.8744 25.0074 21.0446 24.9998C21.2149 24.9923 21.3803 24.941 21.525 24.851C21.82 24.668 22 24.347 22 24V11C22 10.621 21.786 10.275 21.447 10.105ZM10 11.618L14 9.61798V20.382L10 22.382V11.618ZM4 9.61798L8 11.618V22.382L4 20.382V9.61798ZM20 22.382L16 20.382V9.61798L20 11.618V22.382Z" fill="#372E38" />
-                            </svg>
-                        </button>
-                    {/* </NavLink> */}
-                </label>
-            </div>
-        </div>
-    )
+      <div className="flex items-center justify-center h-screen my-[30px] w-full">
+        <ReactLoading type="spinningBubbles" color="#000" height={100} width={100} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="Header bg-[#F1EEF1] py-[20px] w-full">
+      <div className="Container">
+        <label
+          htmlFor="search"
+          className="flex items-center justify-between bg-[white] px-[16px] py-[10px] mx-[15px] rounded-[24px]"
+        >
+          <div className="flex items-center gap-[10px]">
+            <svg
+              className="cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+            >
+              <path
+                d="M10.567 20.1339C12.6896 20.1335 14.7511 19.4229 16.4231 18.1153L18.6007 20.2929C18.9913 20.6834 19.6244 20.6834 20.0149 20.2929L20.2917 20.0161C20.6822 19.6256 20.6822 18.9925 20.2917 18.6019L18.1141 16.4243C19.4224 14.7521 20.1334 12.6902 20.1339 10.567C20.1339 5.29198 15.8419 1 10.567 1C5.29198 1 1 5.29198 1 10.567C1 15.8419 5.29198 20.1339 10.567 20.1339ZM10.567 3.39174C14.5241 3.39174 17.7422 6.60983 17.7422 10.567C17.7422 14.5241 14.5241 17.7422 10.567 17.7422C6.60983 17.7422 3.39174 14.5241 3.39174 10.567C3.39174 6.60983 6.60983 3.39174 10.567 3.39174Z"
+                fill="#372E38"
+                stroke="white"
+                strokeWidth="0.6"
+              />
+            </svg>
+            <input
+              className="outline-none"
+              type="text"
+              placeholder="Qidiruv"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </div>
+        </label>
+      </div>
+    </div>
+  );
 }
